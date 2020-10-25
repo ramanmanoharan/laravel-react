@@ -23,8 +23,14 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/Category', [App\Http\Controllers\Api\CategoryController::class, 'index'])->name('index');
 Route::post('/Category/store', [App\Http\Controllers\Api\CategoryController::class, 'store'])->name('store');
-Route::delete('Category/delete/{id}', [App\Http\Controllers\CategoryController::class, 'destroy'])->name('destroy');
+Route::delete('/Category/delete/{id}', [App\Http\Controllers\Api\CategoryController::class, 'destroy'])->name('destroy');
+Route::get('/Category/edit/{id}', [App\Http\Controllers\Api\CategoryController::class, 'edit'])->name('edit');
+Route::put('/Category/update/{id}', [App\Http\Controllers\Api\CategoryController::class, 'update'])->name('update');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

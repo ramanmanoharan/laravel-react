@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 export default class Listing extends Component{
     constructor()
@@ -22,12 +23,12 @@ export default class Listing extends Component{
     {
         axios.delete('http://localhost:8000/Category/delete/'+category_id)
         .then(response=>{
-            var categories = this.setState.categories;
+            var categories = this.state.categories;
             for(var i=0; i< categories.length; i++){
                 if(categories[i].id==category_id){
                     categories.splice(i,1);
                     this.setState({categories:categories});
-                    this.setState({categories:response.data});
+                    
                 }
             }
         })
@@ -56,7 +57,9 @@ export default class Listing extends Component{
                                             <td>{category.active}</td>
                                             <td>{category.created_at}</td>
                                             <td>{category.updated_at}</td>
-                                            <td><a href="#" onClick={this.onDelete.bind(this, category.id)}><button class="btn btn-danger">Delete</button></a></td>
+                                            <td><a href="#" onClick={this.onDelete.bind(this, category.id)}><button class="btn btn-danger">Delete</button></a>
+                                            <Link to={`/edit/${category.id}`}><button class="btn btn-danger">EDIT</button></Link>
+                                            </td>
                                         </tr>
                                 )
                             })
